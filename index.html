@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic-Tac-Toe</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Tic-Tac-Toe</h1>
+    <div id="rules">
+        <h2>Game Rules</h2>
+        <p>
+            Welcome to Tic-Tac-Toe! The game is played on a 3x3 grid. Players take turns to place their mark (X or O) in an empty cell.
+            The first player to get 3 of their marks in a row (horizontally, vertically, or diagonally) wins the game.
+            If all cells are filled and no player has 3 marks in a row, the game is a draw.
+        </p>
+    </div>
+    <table id="board">
+        <tr>
+            <td data-row="0" data-col="0"></td>
+            <td data-row="0" data-col="1"></td>
+            <td data-row="0" data-col="2"></td>
+        </tr>
+        <tr>
+            <td data-row="1" data-col="0"></td>
+            <td data-row="1" data-col="1"></td>
+            <td data-row="1" data-col="2"></td>
+        </tr>
+        <tr>
+            <td data-row="2" data-col="0"></td>
+            <td data-row="2" data-col="1"></td>
+            <td data-row="2" data-col="2"></td>
+        </tr>
+    </table>
+    <div id="status">Player X's turn</div>
+    <div id="winner-sign" class="winner-sign"></div>
+    <script>
+        const board = document.getElementById('board');
+        const status = document.getElementById('status');
+        const winnerSign = document.getElementById('winner-sign');
+        let currentPlayer = 'X';
+        let gameOver = false;
+
+        const checkWin = () => {
+            const cells = Array.from(board.getElementsByTagName('td'));
+            const winPatterns = [
+                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Rows
+                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Columns
+                [0, 4, 8], [2, 4, 6]              // Diagonals
+            ];
+
+            return winPatterns.some(pattern => {
+                const [a, b, c] = pattern;
+                return cells[a].textContent && cells[a].textContent === cells[b].textContent && cells[a].textContent === cells[c].textContent;
+            });
+        };
+
+        const handleClick = (e) => {
+            if (gameOver || e.target.textContent) return;
+            e.target.textContent = currentPlayer;
+
+            if (checkWin()) {
+                status.textContent = `Player ${currentPlayer} wins!`;
+                status.classList.add('winner');
+                winnerSign.innerHTML = "🎉";
+                gameOver = true;
+            } else if (Array.from(board.getElementsByTagName('td')).every(cell => cell.textContent)) {
+                status.textContent = "It's a draw!";
+                status.classList.add('draw');
+                winnerSign.innerHTML = "🤝";
+                gameOver = true;
+            } else {
+                currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
+                status.textContent = `Player ${currentPlayer}'s turn`;
+            }
+        };
+
+        board.addEventListener('click', handleClick);
+    </script>
+</body>
+</html>

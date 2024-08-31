@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+h1 {
+    margin-top: 20px;
+    color: #333;
+}
+
+#rules {
+    margin: 20px auto;
+    padding: 10px;
+    max-width: 600px;
+    background-color: #fff;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+}
+
+#rules h2 {
+    margin: 0;
+    font-size: 1.5em;
+    color: #444;
+}
+
+#rules p {
+    font-size: 1.1em;
+    color: #666;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+td {
+    width: 100px;
+    height: 100px;
+    border: 2px solid #333;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 3em;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+}
+
+td:hover {
+    background-color: #ddd;
+    transform: scale(1.1);
+}
+
+#status {
+    margin-top: 20px;
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #333;
+}
+
+.winner {
+    color: green;
+    font-size: 1.8em;
+}
+
+.draw {
+    color: orange;
+    font-size: 1.8em;
+}
+
+.winner-sign {
+    font-size: 2em;
+    color: green;
+    margin-top: 20px;
+}
